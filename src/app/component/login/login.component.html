@@ -1,0 +1,19 @@
+<div class="login-wrap">
+    <div class="flex flex-col items-center p-10"> <!-- Apply flex properties -->
+        <h1 class="text-2xl">Login</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="my-4"> <!-- Use a div to wrap each input and label for spacing -->
+            <label for="email" class="mt-2 block">Email</label>
+            <input name="email" id="email" type="email" placeholder="eg. Johndoe@gmail.com" class="w-full border rounded-lg p-2" formControlName="email">
+            <i class="text-xs text-rose-600" *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].touched || loginForm.controls['email'].dirty)   "> Email is required</i>
+        </div>
+        <div class="my-4">
+            <label for="password" class="mt-2 block">Password</label>
+            <input id="password" type="password" class="w-full border rounded-lg p-2" formControlName="password">
+            <i class="text-xs text-rose-600" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].touched || loginForm.controls['password'].dirty)   "> Password is required</i>
+
+        </div>
+        <button [disabled]="loginForm.invalid" class="bg-blue-500 hover:bg-blue-700 disabled:bg-slate-400 text-white font-bold py-2 px-4 rounded">Login</button>
+    </form>
+    </div>
+</div>
