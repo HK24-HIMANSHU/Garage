@@ -4,18 +4,16 @@
 <div class="flex flex-wrap justify-center -mx-2">
     <div *ngFor="let servicing of servicing" class="flex max-w-md w-full md:w-1/3 px-2 my-4">
       <div class="border-2 border-gray-300 rounded-lg overflow-hidden flex flex-col w-full">
-        <!-- Side Section -->
         <div class="bg-purple-700 text-white p-4">
-          <div class="font-bold">{{ servicing.serviceType }}</div>
-          <div>{{ servicing.timeSlot }}</div>
+          <div class="font-bold">{{ servicing.servicetype }}</div>
+          <div>{{ servicing.servicedate }}</div>
         </div>
       
-        <!-- Main Section -->
         <div class="flex-1 p-4">
-          <div class="font-bold mb-2">{{ servicing.customerName }}</div>
-          <div class="mb-2">{{ servicing.address }}</div>
-          <div class="mb-2">{{ servicing.phoneNumber }}</div>
-          <div>{{ servicing.carType }}</div>
+          <div class="font-bold mb-2">{{ servicing.fullname }}</div>
+          <div class="mb-2">{{ servicing.carmodel }}</div>
+          <div class="mb-2">{{ servicing.phonenumber }}</div>
+          <div>{{ servicing.car_reg_no }}</div>
           <div class="flex justify-between space-x-2 mt-4">
             <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition ease-in duration-200" type="button">
               Delete Ticket

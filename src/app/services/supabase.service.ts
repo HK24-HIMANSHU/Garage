@@ -42,7 +42,7 @@ export class SupabaseService {
     try{
       return from(
         this.supabase_client
-        .from('Servicing')
+        .from('service_orders_table')
         .select()
       )
     } catch(ex){
