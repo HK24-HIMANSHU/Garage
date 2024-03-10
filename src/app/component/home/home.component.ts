@@ -26,15 +26,17 @@ export class HomeComponent implements OnInit {
     this.auth.getAllServicing().subscribe((response)=>{
       this.servicing = response.data.map((item: any)=>{
         return {
-          serviceId: item.serviceId,
-          customerName: item.customerName,
-          address: item.address,
-          phoneNumber: item.phoneNumber,
-          carType: item.carType,
-          serviceType: item.serviceType,
-          timeSlot: item.timeSlot
+          servicedate: item.servicedate,
+          phonenumber: item.phonenumber,
+          fullname: item.fullname,
+          carmodel: item.carmodel[0].name,
+          price: item.price,
+          car_purchase_time: item.car_purchase_time,
+          car_reg_no: item.car_reg_no,
+          servicetype:item.servicetype,
         } as Servicing
       });
+      console.log(response);
     },
       (error)=>{
         console.log('Error fetching',error);
