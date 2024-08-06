@@ -1,31 +1,45 @@
+<div class="flex justify-center mt-4">
+  <mat-form-field appearance="fill">
+    <mat-label>Select Date</mat-label>
+    <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+
 <button (click)="logout()" class="bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 px-4 py-2 rounded-lg absolute top-4 left-4">Logout</button>
-<br>
-<br>
+
 <div class="flex flex-wrap justify-center -mx-2">
-    <div *ngFor="let servicing of servicing" class="flex max-w-md w-full md:w-1/3 px-2 my-4">
-      <div class="border-2 border-gray-300 rounded-lg overflow-hidden flex flex-col w-full">
-        <div class="bg-purple-700 text-white p-4">
-          <div class="font-bold">{{ servicing.servicetype }}</div>
-          <div>{{ servicing.servicedate }}</div>
-        </div>
-      
-        <div class="flex-1 p-4">
-          <div class="font-bold mb-2">{{ servicing.fullname }}</div>
-          <div class="mb-2">{{ servicing.carmodel }}</div>
-          <div class="mb-2">{{ servicing.phonenumber }}</div>
-          <div>{{ servicing.car_reg_no }}</div>
-          <div class="flex justify-between space-x-2 mt-4">
-            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition ease-in duration-200" type="button">
-              Delete Ticket
-            </button>
-            <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition ease-in duration-200" type="button">
-              Send Reminder
-            </button>
-          </div>
+  <div *ngFor="let servicing of filteredServicing" class="flex max-w-md w-full md:w-1/3 px-2 my-4">
+    <div class="border-2 border-gray-300 rounded-lg overflow-hidden flex flex-col w-full">
+      <div class="bg-purple-700 text-white p-4">
+        <div class="font-bold">{{ servicing.servicetype }}</div>
+        <div>{{ servicing.servicedate }}</div>
+      </div>
+      <div class="flex-1 p-4">
+        <div class="font-bold mb-2">{{ servicing.fullname }}</div>
+        <div class="mb-2">{{ servicing.carmodel }}</div>
+        <div class="mb-2">{{ servicing.phonenumber }}</div>
+        <div>{{ servicing.car_reg_no }}</div>
+        <div>Rs. {{ servicing.price }}</div>
+        <mat-chip style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
+          {{ servicing.IsServiceCancelled ? 'Service Cancelled' : 'Service Active' }}
+        </mat-chip>
+        <mat-chip style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
+          {{ servicing.Is_Seasonal_service_added ? 'Seasonal Service Not Added' : 'Seasonal Service Added' }}
+        </mat-chip>
+        <mat-chip style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
+          {{ servicing.IsCompleted ? 'Servicing Completed' : 'Servicing Pending' }}
+        </mat-chip>
+        <div class="flex justify-between space-x-2 mt-4">
+          <!-- <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition ease-in duration-200" type="button">
+            Delete Ticket
+          </button> -->
+          <button [disabled]="servicing.IsCompleted" (click)="markAsCompleted(servicing)" class="disabled:bg-gray-400 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition ease-in duration-200" type="button">
+            Mark As Completed
+          </button>
         </div>
       </div>
     </div>
   </div>
-  
-  
-  
+</div>
