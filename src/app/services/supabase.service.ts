@@ -3,6 +3,7 @@ import { AuthChangeEvent, AuthError, AuthResponse, AuthTokenResponse, PostgrestR
 import { environment } from '../../environments/environment.development';
 import { BehaviorSubject, Observable, from, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { Servicing } from '../interfaces/servicing';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,13 @@ export class SupabaseService {
     } catch(ex){
       return throwError(Error);
     }
+  }
+  updateServicing(servicing: Servicing): Observable<any> {
+    console.log('update ran');
+    return from(this.supabase_client
+      .from('service_orders_table')
+      .update({ IsCompleted: servicing.IsCompleted })
+      .eq('id', servicing.id) // Assuming you have an `id` field in your `servicing` table
+    );
   }
 }

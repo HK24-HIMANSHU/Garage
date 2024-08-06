@@ -6,6 +6,7 @@ export interface Servicing {
     // carType: string,
     // serviceType: string,
     // timeSlot: string
+    id:number,
     servicedate: string,
     phonenumber: number,
     fullname: string,
@@ -14,4 +15,7 @@ export interface Servicing {
     car_purchase_time: string,
     car_reg_no: string,
     servicetype:string,
+    IsServiceCancelled:boolean,
+    Is_Seasonal_service_added:boolean,
+    IsCompleted:boolean,
 }
