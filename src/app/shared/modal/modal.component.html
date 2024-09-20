@@ -1,0 +1,11 @@
+<h1 mat-dialog-title class="text-xl font-semibold text-center mb-4 pt-8">Send Details</h1>
+<div mat-dialog-content class="p-4">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Phone Number</mat-label>
+    <input matInput [(ngModel)]="phoneNumber" placeholder="Enter phone number" class="border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 block w-full sm:text-sm rounded-md" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="flex justify-end gap-2 p-4">
+  <button mat-button class="bg-gray-200 text-gray-700 hover:bg-gray-300 rounded px-4 py-2" (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" class="bg-blue-500 text-white hover:bg-blue-600 rounded px-4 py-2" (click)="onSend()">Send</button>
+</div>

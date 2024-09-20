@@ -7,6 +7,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   filteredServicing: Servicing[] = [];
   selectedDate: Date | null = null;
 
-  constructor(private auth: SupabaseService) {}
+  constructor(private auth: SupabaseService, public router: Router) {}
 
   logout(): void {
     this.auth.signOut();
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
           servicedate: item.servicedate,
           phonenumber: item.phonenumber,
           fullname: item.fullname,
-          carmodel: item.carmodel[0].name,
+          carmodel: item.carmodel[0]?.name,
           price: item.price[0].Service_cost,
           car_purchase_time: item.car_purchase_time,
           car_reg_no: item.car_reg_no,
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
           IsServiceCancelled: item.IsServiceCancelled,
           Is_Seasonal_service_added: item.Is_Seasonal_service_added,
           IsCompleted: item.IsCompleted,
+          user_profile_id: item.user_profile_id,
         } as Servicing;
       });
       this.filterServicingTickets();
@@ -85,4 +87,17 @@ export class HomeComponent implements OnInit {
       console.log('Error updating servicing ticket', error);
     });
   }
+
+  viewProfile(servicing :Servicing):void{
+    this.router.navigate(['/profile'],{
+      queryParams: {
+        id: servicing.user_profile_id,
+        carModel: servicing.carmodel,
+        registrationNo: servicing.car_reg_no,
+      }
+    }); 
+  }
+
+
+
 }

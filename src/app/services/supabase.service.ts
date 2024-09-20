@@ -55,7 +55,15 @@ export class SupabaseService {
     return from(this.supabase_client
       .from('service_orders_table')
       .update({ IsCompleted: servicing.IsCompleted })
-      .eq('id', servicing.id) // Assuming you have an `id` field in your `servicing` table
+      .eq('id', servicing.id) // Assuming you have an id field in your servicing table
     );
   }
+
+  getUserProfile(userId: number): Observable<any> {
+    return from(this.supabase_client
+      .from('user_profiles') 
+      .select('*')      
+      .eq('id', userId) // Filter where the 'id' column matches the provided userId
+    );
+  }  
 }
