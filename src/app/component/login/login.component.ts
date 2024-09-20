@@ -19,7 +19,13 @@ export class LoginComponent {
         password:formBuilder.control('',[Validators.required,Validators.minLength(8)]),
       })     
     }
-    async onSubmit(){
-      const data = await this.auth.login(this.loginForm.value.email,this.loginForm.value.password);
+    async onSubmit() {
+      const success = await this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
+      
+      if (!success) {
+        // Show an error message if login failed
+        alert('Invalid email or password. Please try again.');
+      }
     }
+    
 }

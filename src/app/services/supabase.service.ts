@@ -14,20 +14,26 @@ export class SupabaseService {
     this.supabase_client = createClient(environment.supabaseKeys.url, environment.supabaseKeys.key)
   }
 
-  async login(email:string,password:string){
-    try{
-      const {data,error} =  await this.supabase_client.auth.signInWithPassword({email,password});
-      if(data){
-        console.log(data);
-        console.log('login successful');
-        this.routes.navigate(['/home'])
-      }else if(error){
-        console.log(error);
+  async login(email: string, password: string) {
+    try {
+      const { data, error } = await this.supabase_client.auth.signInWithPassword({ email, password });
+      if (error) {
+        // Handle invalid credentials or other auth errors
+        console.log('Login failed:', error.message);
+        return false; // Indicate login failure
       }
-    }catch(ex:any){
-      console.log(ex.message);
+      if (data) {
+        console.log('Login successful:', data);
+        this.routes.navigate(['/home']);
+        return true; // Indicate login success
+      }
+    } catch (ex: any) {
+      console.log('An error occurred:', ex.message);
+      return false; // Indicate login failure
     }
+    return false;
   }
+  
 
   async getUserBruh(){
     const { data: { user } } = await this.supabase_client.auth.getUser();
