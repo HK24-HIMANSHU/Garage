@@ -21,6 +21,5 @@ export class LoginComponent {
     }
     async onSubmit(){
       const data = await this.auth.login(this.loginForm.value.email,this.loginForm.value.password);
-      this.auth.getUserBruh();
     }
 }

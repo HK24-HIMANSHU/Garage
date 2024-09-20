@@ -8,6 +8,7 @@ export interface Servicing {
     // timeSlot: string
     id:number,
     servicedate: string,
+    user_profile_id: number,
     phonenumber: number,
     fullname: string,
     carmodel: JSON,
