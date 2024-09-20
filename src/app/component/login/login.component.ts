@@ -25,6 +25,8 @@ export class LoginComponent {
       if (!success) {
         // Show an error message if login failed
         alert('Invalid email or password. Please try again.');
+        console.log('testing');
+        
       }
     }
     
