@@ -22,13 +22,17 @@
         <div class="mb-2">{{ servicing.phonenumber }}</div>
         <div>{{ servicing.car_reg_no }}</div>
         <div>Rs. {{ servicing.price }}</div>
-        <mat-chip style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
-          {{ servicing.IsServiceCancelled ? 'Service Cancelled' : 'Service Active' }}
+        <mat-chip *ngIf="servicing.IsServiceCancelled" style="margin: 4px;  background-color: rgb(206, 34, 91); color: white !important;" selected>
+          Service Cancelled
         </mat-chip>
-        <mat-chip style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
-          {{ servicing.Is_Seasonal_service_added ? 'Seasonal Service Not Added' : 'Seasonal Service Added' }}
-        </mat-chip>
-        <mat-chip style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
+
+
+        <!-- <div *ngIf="servicing.Is_Seasonal_service_added"> -->
+          <mat-chip *ngIf="servicing.Is_Seasonal_service_added" style="margin: 4px;  background-color: rgb(34, 146, 206); color: white !important;" selected>
+            {{ servicing.Is_Seasonal_service_added ? 'Seasonal Service Added' : '' }}
+          </mat-chip>
+        <!-- </div> -->
+        <mat-chip *ngIf="!servicing.IsServiceCancelled" style="margin: 4px;  background-color: rgb(126, 34, 206); color: white !important;" selected>
           {{ servicing.IsCompleted ? 'Servicing Completed' : 'Servicing Pending' }}
         </mat-chip>
         <div class="flex justify-between space-x-2 mt-4">
