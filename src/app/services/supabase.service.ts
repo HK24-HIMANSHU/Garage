@@ -9,9 +9,12 @@ import { Servicing } from '../interfaces/servicing';
   providedIn: 'root'
 })
 export class SupabaseService {
-  private supabase_client: SupabaseClient
+  public supabase_client: SupabaseClient
   constructor(private routes: Router) { 
     this.supabase_client = createClient(environment.supabaseKeys.url, environment.supabaseKeys.key)
+  }
+  get client(): SupabaseClient {
+    return this.supabase_client;
   }
 
   async login(email: string, password: string) {
